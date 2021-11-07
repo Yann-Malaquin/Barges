@@ -20,7 +20,7 @@ public class Service {
     private List<String> setOfLegs;
 
     // L'origine et la destination de chaque transport
-    private List<String> pathOfEachLeg;
+    private List<Map<String, String>> pathOfEachLeg;
 
     // La duree du trajet (1/2 journee)
     private List<Integer> travelTime;
@@ -38,10 +38,10 @@ public class Service {
     private int arrival;
 
     // Arrets effectues pendant le service
-    private List<String> stoppingTime;
+    private List<Map<String, Integer>> stoppingTime;
 
     // Fins des arrets effectues pendant le service
-    private List<String> departureTime;
+    private List<Map<String, Integer>> departureTime;
 
     // Capacite maximale du service en TEU
     private int capacity;
@@ -50,9 +50,10 @@ public class Service {
     private List<Map<Integer, String>> vesselType;
 
 
-    public Service(int serviceId, String origin, String destination, List<String> setOfLegs, List<String> pathOfEachLeg,
+    public Service(int serviceId, String origin, String destination, List<String> setOfLegs, List<Map<String, String>> pathOfEachLeg,
                    List<Integer> travelTime, int initialLoading, int finalUnloading, int departure, int arrival,
-                   List<String> stoppingTime, List<String> departureTime, int capacity, List<Map<Integer, String>> vesselType) {
+                   List<Map<String, Integer>> stoppingTime, List<Map<String, Integer>> departureTime, int capacity,
+                   List<Map<Integer, String>> vesselType) {
         this.serviceID = serviceId;
         this.origin = origin;
         this.destination = destination;
@@ -76,5 +77,23 @@ public class Service {
         this.vesselType.addAll(vesselType);
     }
 
-
+    @Override
+    public String toString() {
+        return "\nService { \n" +
+                "serviceID = " + serviceID +
+                ", \norigin = '" + origin + '\'' +
+                ", \ndestination = '" + destination + '\'' +
+                ", \nsetOfLegs = " + setOfLegs +
+                ", \npathOfEachLeg = " + pathOfEachLeg +
+                ", \ntravelTime = " + travelTime +
+                ", \ninitialLoading = " + initialLoading +
+                ", \nfinalUnloading = " + finalUnloading +
+                ", \ndeparture = " + departure +
+                ", \narrival = " + arrival +
+                ", \nstoppingTime = " + stoppingTime +
+                ", \ndepartureTime = " + departureTime +
+                ", \ncapacity = " + capacity +
+                ", \nvesselType = " + vesselType +
+                "}\n";
+    }
 }
