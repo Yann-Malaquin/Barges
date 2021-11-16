@@ -78,3 +78,10 @@ public class Main {
         }
     }
 }
+
+// créer class barge mettre type et occupe?
+// dans le main départ placer la barge en occupe = true
+// quand arrivé à destination alors occupé = false
+// donc on boucle
+// dans demande mettre liste barge qui s'en occupe
+// comme ça on pourra faire demande.getListBarge().get(0).setOccupe(true) connerie du genre
