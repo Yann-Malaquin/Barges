@@ -1,5 +1,7 @@
 package service;
 
+import flotte.Flotte;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -7,7 +9,7 @@ import java.io.IOException;
 import java.util.*;
 
 /**
- * Cette class permet la lecture un ou des services
+ * Cette class permet la lecture d'un ou des services
  */
 public class LectureService {
 
@@ -60,11 +62,11 @@ public class LectureService {
                     // On "éclate" la chaîne de caractères grâce au séparateur ";" et on ajoute dans la liste
                     setOfLegs.addAll(Arrays.asList(tab[3].split(";")));
                     //Récupération du path of each leg du service
-                    List<Map<String, String>> pathOfEachLeg = new ArrayList<>();
+                    List<String> pathOfEachLeg = new ArrayList<>();
                     // On "éclate" la chaîne de caractères grâce au séparateur ";" et on ajoute dans la liste
                     String[] paths = tab[4].split(";");
                     String[] pathSplit = new String[2];
-                    Map<String, String> path;
+
                     /*
                      * On obtient donc par exemple "A-B"
                      * On "éclate" la chaîne de caractères grâce au séparateur "-" et on crée un Map que l'on ajoute dans
@@ -72,17 +74,13 @@ public class LectureService {
                      */
                     for (int i = 0; i < paths.length; i++) {
                         pathSplit = paths[i].split("-");
-                        path = new HashMap<>();
-                        path.put(pathSplit[0], pathSplit[1]);
-                        pathOfEachLeg.add(path);
+                        pathOfEachLeg.addAll(Arrays.asList(pathSplit));
                     }
                     // Récupération du travel time pour chaque leg
-                    List<Integer> travelTime = new ArrayList<>();
+                    List<String> travelTime = new ArrayList<>();
                     String[] tT = tab[5].split(";");
                     // Conversion des valeurs String en Integer
-                    for (String s : tT) {
-                        travelTime.add(Integer.parseInt(s));
-                    }
+                    travelTime.addAll(Arrays.asList(tT));
 
                     // Récupération du début de chargement
                     int initialLoading = Integer.parseInt(tab[6]);
@@ -96,8 +94,7 @@ public class LectureService {
                     // Récupération du stoppingTime
                     String[] sT = tab[10].split(";");
                     String[] sTSplit = new String[2];
-                    Map<String, Integer> sTMap;
-                    List<Map<String, Integer>> stoppingTime = new ArrayList<>();
+                    List<String> stoppingTime = new ArrayList<>();
                     /*
                      * On obtient donc par exemple "A-2"
                      * On "éclate" la chaîne de caractères grâce au séparateur "," et on crée un Map que l'on ajoute dans
@@ -105,20 +102,18 @@ public class LectureService {
                      */
                     for (int i = 0; i < sT.length; i++) {
                         sTSplit = sT[i].split(",");
-                        sTMap = new HashMap<>();
                         if (sTSplit.length == 2) {
-                            sTMap.put(sTSplit[0], Integer.parseInt(sTSplit[1]));
+                            stoppingTime.addAll(Arrays.asList(sTSplit));
                         } else {
-                            sTMap.put("-", 0);
+                            stoppingTime.add("-");
                         }
-                        stoppingTime.add(sTMap);
                     }
 
                     // Récupération du departureTime
                     String[] dT = tab[11].split(";");
                     String[] dTSplit = new String[2];
-                    Map<String, Integer> dTMap;
-                    List<Map<String, Integer>> departureTime = new ArrayList<>();
+
+                    List<String> departureTime = new ArrayList<>();
                     /*
                      * On obtient donc par exemple "A-2"
                      * On "éclate" la chaîne de caractères grâce au séparateur "," et on crée un Map que l'on ajoute dans
@@ -126,24 +121,21 @@ public class LectureService {
                      */
                     for (int i = 0; i < dT.length; i++) {
                         dTSplit = dT[i].split(",");
-                        dTMap = new HashMap<>();
                         if (dTSplit.length == 2) {
-                            dTMap.put(dTSplit[0], Integer.parseInt(dTSplit[1]));
+                            departureTime.addAll(Arrays.asList(dTSplit));
                         } else {
-                            dTMap.put("-", 0);
+                            departureTime.add("-");
                         }
 
-                        departureTime.add(dTMap);
                     }
-
 
                     // Récupération de la capacité max
                     int capacity = Integer.parseInt(tab[12]);
                     // Récupération du vesselType
                     String[] vesselTypes = tab[13].split(";");
                     String[] vesselTypesSplit = new String[2];
-                    Map<Integer, String> vessel;
-                    List<Map<Integer, String>> vesselType = new ArrayList<>();
+                    List<String> vesselType = new ArrayList<>();
+                    Flotte flotte = new Flotte();
                     /*
                      * On obtient donc par exemple "1-Small"
                      * On "éclate" la chaîne de caractères grâce au séparateur "-" et on crée un Map que l'on ajoute dans
@@ -151,17 +143,20 @@ public class LectureService {
                      */
                     for (int i = 0; i < vesselTypes.length; i++) {
                         vesselTypesSplit = vesselTypes[i].split("-");
-                        vessel = new HashMap<>();
-                        vessel.put(Integer.parseInt(vesselTypesSplit[0]), vesselTypesSplit[1]);
-                        vesselType.add(vessel);
+
+                        if (vesselTypesSplit[1].equals("Small")){
+                            flotte.setSmall(Integer.parseInt(vesselTypesSplit[0]));
+                        } else if (vesselTypesSplit[1].equals("Medium")) {
+                            flotte.setMedium(Integer.parseInt(vesselTypesSplit[0]));
+                        } else {
+                            flotte.setLarge(Integer.parseInt(vesselTypesSplit[0]));
+                        }
                     }
 
                     // Ajout d'un nouveau service dans la liste de services
                     listService.add(new Service(serviceId, origin, destination, setOfLegs, pathOfEachLeg, travelTime,
                             initialLoading, finalUnloading, departure, arrival, stoppingTime,
-                            departureTime,
-                            capacity, vesselType));
-
+                            departureTime, capacity, flotte));
                 } else {
                     x++;
                 }
@@ -170,6 +165,10 @@ public class LectureService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public List<Service> getListService() {
+        return listService;
     }
 
     @Override

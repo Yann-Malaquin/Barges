@@ -1,4 +1,4 @@
-Demand ID Origin Destination Departure-Time Arrival-Time Volume
+DemandID Origin Destination Departure-Time Arrival-Time Volume
 1F  A   D   0   8   13
 2P  D   B   11  1   15
 3R  A   C   2   13  20

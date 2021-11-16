@@ -1,41 +1,80 @@
 package main;
 
+import demande.Demande;
+import demande.LectureDemande;
 import service.LectureService;
 import service.Service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        //LectureService lectureService = new LectureService();
+        List<Demande> demandeList = new ArrayList<>();
+        List<Service> serviceList = new ArrayList<>();
 
 
-        /*List<String> testList = new ArrayList<>();
-        testList.add("C");
-        testList.add("1");
-        testList.add("D");
-        testList.add("2");
-        testList.add("E");
-        testList.add("3");
-        testList.add("F");
-        testList.add("4");
-        Map<String, String> mapTest = new HashMap<>();
 
-        for (int i = 0; i + 1 < testList.size(); i+=2){
-            mapTest.put(testList.get(i), testList.get(i+1));
+        int i = 0;
+        int j = 0;
+        int time = 0;
+
+        while (time < 140) {
+            if (j == 14 || j == 0) {
+                System.out.println("----------------------Début de semaine " + (time / 14 + 1) + "----------------------");
+                LectureDemande ld = new LectureDemande();
+                LectureService ls = new LectureService();
+                demandeList = ld.getListDemande();
+                serviceList = ls.getListService();
+
+                System.out.println(serviceList.toString());
+
+                i = 0;
+                j = 0;
+            }
+            for (Demande demande : demandeList) {
+                for (Service service : serviceList) {
+
+                    if ((demande.getOrigin().equals(service.getOrigin()))
+                            && (demande.getDestination().equals(service.getDestination()))
+                            && (demande.getVolume() <= service.getCapacity())
+                            && (service.getInitialLoading() >= demande.getDepartureTime())
+                            && (service.getArrival() <= demande.getArrivalTime())
+                    ) {
+
+                        if (service.getInitialLoading() == i) {
+                            System.out.println("-Charge du Service " + service.getServiceID() + " a 1/2 journee " + i);
+                        }
+
+                        if (service.getDepartureTime().get(0).equals("-")) {
+                            int id = service.getServiceID();
+                            String s = service.getPathOfEachLeg().get(0);
+                            System.out.println("--Service " + id + " départ du point " + s + " a 1/2 journee " + i);
+                        } else if (service.getDeparture() == i || service.getDepartureTime().get(1).equals(Integer.toString(i))) {
+                            int id = service.getServiceID();
+                            String s = service.getPathOfEachLeg().get(0);
+                            System.out.println("--Service " + id + " départ du point " + s + " a 1/2 journee " + i);
+                            service.getPathOfEachLeg().remove(0);
+                        }
+
+                        if (!service.getStoppingTime().get(0).equals("-") && service.getStoppingTime().get(1).equals(Integer.toString(i))) {
+                            int id = service.getServiceID();
+                            String s = service.getStoppingTime().get(0);
+                            System.out.println("---Service " + id + " arrive en " + s + " a 1/2 journee " + i);
+                            service.getPathOfEachLeg().remove(0);
+                        }
+
+                        if (service.getArrival() == i) {
+                            int id = service.getServiceID();
+                            String s = service.getDestination();
+                            System.out.println("----Service " + id + " arrive en " + s + " a 1/2 journee " + i + " et a termine");
+                        }
+                    }
+                }
+            }
+            j++;
+            i++;
+            time++;
         }
-
-        Set<String> setTest = mapTest.keySet();
-
-        for (String phoneNumber : setTest) {
-            String name = mapTest.get(phoneNumber);
-
-            System.out.println("Phone Number: " + phoneNumber + " ==> Name: " + name);
-        }*/
-        LectureService ls = new LectureService();
-        System.out.println(ls.toString());
-
-
-
     }
 }
