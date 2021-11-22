@@ -1,6 +1,6 @@
 package service;
 
-import flotte.Flotte;
+import flotte.Barge;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -135,7 +135,7 @@ public class LectureService {
                     String[] vesselTypes = tab[13].split(";");
                     String[] vesselTypesSplit = new String[2];
                     List<String> vesselType = new ArrayList<>();
-                    Flotte flotte = new Flotte();
+                    List<Barge> bargeList = new ArrayList<>();
                     /*
                      * On obtient donc par exemple "1-Small"
                      * On "éclate" la chaîne de caractères grâce au séparateur "-" et on crée un Map que l'on ajoute dans
@@ -145,18 +145,18 @@ public class LectureService {
                         vesselTypesSplit = vesselTypes[i].split("-");
 
                         if (vesselTypesSplit[1].equals("Small")){
-                            flotte.setSmall(Integer.parseInt(vesselTypesSplit[0]));
+                            bargeList.add(new Barge(10,vesselTypesSplit[1]));
                         } else if (vesselTypesSplit[1].equals("Medium")) {
-                            flotte.setMedium(Integer.parseInt(vesselTypesSplit[0]));
+                            bargeList.add(new Barge(15,vesselTypesSplit[1]));
                         } else {
-                            flotte.setLarge(Integer.parseInt(vesselTypesSplit[0]));
+                            bargeList.add(new Barge(25,vesselTypesSplit[1]));
                         }
                     }
 
                     // Ajout d'un nouveau service dans la liste de services
                     listService.add(new Service(serviceId, origin, destination, setOfLegs, pathOfEachLeg, travelTime,
                             initialLoading, finalUnloading, departure, arrival, stoppingTime,
-                            departureTime, capacity, flotte));
+                            departureTime, capacity, bargeList));
                 } else {
                     x++;
                 }

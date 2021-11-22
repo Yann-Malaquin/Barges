@@ -1,10 +1,9 @@
 package service;
 
-import flotte.Flotte;
+import flotte.Barge;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 // Class représentant un service.
 public class Service {
@@ -48,14 +47,14 @@ public class Service {
     // Capacite maximale du service en TEU
     private int capacity;
 
-    // Le type et le nombre de bateau(x) dans le service
-    private Flotte flotte;
+    // Les barges présentent dans le service
+    private List<Barge> bargeList;
 
 
     public Service(int serviceId, String origin, String destination, List<String> setOfLegs, List<String> pathOfEachLeg,
                    List<String> travelTime, int initialLoading, int finalUnloading, int departure, int arrival,
                    List<String> stoppingTime, List<String> departureTime, int capacity,
-                 Flotte flotte) {
+                 List<Barge> bargeList) {
         this.serviceID = serviceId;
         this.origin = origin;
         this.destination = destination;
@@ -69,14 +68,14 @@ public class Service {
         this.stoppingTime = new ArrayList<>();
         this.departureTime = new ArrayList<>();
         this.capacity = capacity;
-        this.flotte = new Flotte();
+        this.bargeList = new ArrayList<>();
 
         this.setOfLegs.addAll(setOfLegs);
         this.pathOfEachLeg.addAll(pathOfEachLeg);
         this.travelTime.addAll(travelTime);
         this.stoppingTime.addAll(stoppingTime);
         this.departureTime.addAll(departureTime);
-        this.flotte = flotte;
+        this.bargeList.addAll(bargeList);
     }
 
     public int getServiceID() {
@@ -131,6 +130,9 @@ public class Service {
         return capacity;
     }
 
+    public List<Barge> getBargeList() {
+        return bargeList;
+    }
 
 
     @Override
@@ -149,7 +151,7 @@ public class Service {
                 ", \nstoppingTime = " + stoppingTime +
                 ", \ndepartureTime = " + departureTime +
                 ", \ncapacity = " + capacity +
-                ", \nflotte = " + flotte +
+                ", \nbargeList = " + bargeList +
                 "}\n";
     }
 }
