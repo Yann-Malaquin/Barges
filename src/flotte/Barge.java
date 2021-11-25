@@ -5,16 +5,17 @@ package flotte;
  */
 public class Barge {
 
-    // Permet d'incrémenter automatiquement l'id.
-    private static int count = 0;
-    // L'id de la barge
-    public int id;
     // Si la barge est disponible
     public boolean disponible;
     // Le poids de la barge (10,15,25)
     public int poids;
     // Le type de la barge (Small, Medium, Large)
     public String type;
+
+    public Barge(){
+        this.poids = 0;
+        this.type = null;
+    }
 
     /**
      * Constructeur Barge
@@ -25,17 +26,8 @@ public class Barge {
      * {disponible = false}
      */
     public Barge(int poids, String type){
-        this.id = ++count;
-        this.disponible = false;
+        this.disponible = true;
         this.poids = poids;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public boolean isDisponible() {
@@ -57,7 +49,6 @@ public class Barge {
     @Override
     public String toString() {
         return "\nBarge { " +
-                "\nid = " + id +
                 ",\ndisponible = " + disponible +
                 ",\npoids = " + poids +
                 "}\n";

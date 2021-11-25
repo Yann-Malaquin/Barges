@@ -1,5 +1,10 @@
 package demande;
 
+import flotte.Barge;
+
+import java.util.ArrayList;
+import java.util.List;
+
 // Class représentant une demande avec les différents attributs utiles ( départ, capacité ...)
 public class Demande {
 
@@ -21,6 +26,9 @@ public class Demande {
     // Capacité de allouée à la demande
     private int volume;
 
+    // Barges qui s'occupent de la demande
+    private List<Barge> bargeAllouee;
+
     public Demande(String demandeId, String origin, String destination, int departureTime, int arrivalTime, int volume) {
         this.demandeId = demandeId;
         this.origin = origin;
@@ -28,6 +36,7 @@ public class Demande {
         this.departureTime = departureTime;
         this.arrivalTime = arrivalTime;
         this.volume = volume;
+        this.bargeAllouee = new ArrayList<>();
     }
 
     public String getDemandeId() {
@@ -54,6 +63,14 @@ public class Demande {
         return volume;
     }
 
+    public List<Barge> getBargeAllouee() {
+        return bargeAllouee;
+    }
+
+    public void setBargeAllouee(Barge bargeAllouee) {
+        this.bargeAllouee .add(bargeAllouee);
+    }
+
     @Override
     public String toString() {
         return "Demande{ " +
@@ -63,6 +80,7 @@ public class Demande {
                 ", \ndepartureTime = " + departureTime +
                 ", \narrivalTime = " + arrivalTime +
                 ", \nvolume = " + volume +
+                ", \nbargesallouees = " + bargeAllouee +
                 "}\n";
     }
 }
