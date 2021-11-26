@@ -23,11 +23,13 @@ public class Main {
         int j = 0;
         int time = 0;
 
-        while (time < 28) {
-            if (j == 14 || j == 0) {
+        while (time < 42) {
+            if (j == 15 || j == 0) {
                 System.out.println("----------------------Début de semaine " + (time / 14 + 1) + "----------------------");
                 i = 0;
                 j = 0;
+                ls = new LectureService();
+                serviceList = ls.getListService();
             }
             for (int w = 0; w < demandeList.size(); w++) {
                 Demande demande = demandeList.get(w);
@@ -35,8 +37,7 @@ public class Main {
                     if ((demande.getOrigin().equals(service.getOrigin()))
                             && (demande.getDestination().equals(service.getDestination()))
                             && (service.getInitialLoading() >= demande.getDepartureTime())
-                            && (service.getArrival() <= demande.getArrivalTime())
-                    ) {
+                            ){
                         // Si on gère une demande qui vient d'arriver ( cas pour 1 seule barge, pas de cas d'addition si gros volume)
                         if (demande.getBargeAllouee().isEmpty() && service.getInitialLoading() == i) {
                             boolean trouve = false;
@@ -61,7 +62,10 @@ public class Main {
                                 System.out.println("-Service : " + service.getServiceID() + ", Chargement de la demande "
                                         + demande.getDemandeId() + " a 1/2 journee " + i + " avec la barge " + demande.getBargeAllouee());
                             }
-                            System.out.println(demande);
+                            else {
+                                System.out.println("-Service : " + service.getServiceID() + ", Chargement de la demande "
+                                        + demande.getDemandeId() + " a 1/2 journee " + i + " avec la barge " + demande.getBargeAllouee());
+                            }
                             if (demande.getBargeAllouee().isEmpty()) {
                                 System.out.println("Pas de barges disponibles pour " + demande.getDemandeId());
                             }
@@ -113,6 +117,7 @@ public class Main {
             i++;
             time++;
         }
+        System.out.println(demandeList);
     }
 
 

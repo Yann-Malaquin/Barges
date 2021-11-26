@@ -5,3 +5,4 @@ ServiceID  Origin  Destination SetOfLegs   PathOfEachLeg   TravelTime  InitialLo
 4   A   C   a1  A-C 2   6   9   7   9   -   -   15  1-Medium
 5   D   B   a1;a2   D-C;C-B 1;1 7   12  8   12  C,9 C,10    25  1-Large
 6   C   A   a1  C-A 2   10  13  11  13  -   -   20  2-Small
+7   D   B   a1;a2   D-C;C-B 1;1 11   1  12   1  C,13 C,14   25  1-Large
