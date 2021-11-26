@@ -71,32 +71,30 @@ public class Main {
                             }
                         } else {
                             if (!demande.getBargeAllouee().isEmpty()) {
-                                if (!service.getDepartureTime().isEmpty()) {
+                                if (demande.getIndex_depart() + 1 < service.getDepartureTime().size()) {
+
                                     if (service.getDepartureTime().get(0).equals("-")) {
                                         if (service.getDeparture() == i) {
                                             int id = service.getServiceID();
                                             String s = service.getPathOfEachLeg().get(0);
                                             System.out.println("--Service " + id + " départ du point " + s + " a 1/2 journee " + i);
                                         }
-                                    } else if (service.getDeparture() == i || service.getDepartureTime().get(1).equals(Integer.toString(i))) {
+                                    } else if (service.getDeparture() == i || service.getDepartureTime().get(demande.getIndex_depart() + 1).equals(Integer.toString(i))) {
                                         int id = service.getServiceID();
-                                        String s = service.getPathOfEachLeg().get(0);
-                                        System.out.println("--Service " + id + " départ du point " + s + " a 1/2 journee " + i);
-                                        if (service.getDepartureTime().get(1).equals(Integer.toString(i))) {
-                                            service.getDepartureTime().remove(0);
-                                            service.getDepartureTime().remove(0);
+                                        if (service.getDepartureTime().get(demande.getIndex_depart() + 1).equals(Integer.toString(i))){
+                                            demande.setIndex_depart();
                                         }
-                                        service.getPathOfEachLeg().remove(0);
+                                        String s = service.getPathOfEachLeg().get(demande.getIndex_depart());
+                                        System.out.println("--Service " + id + " départ du point " + s + " a 1/2 journee " + i);
+
                                     }
                                 }
-                                if (!service.getStoppingTime().isEmpty()) {
-                                    if (!service.getStoppingTime().get(0).equals("-") && service.getStoppingTime().get(1).equals(Integer.toString(i))) {
+                                if (demande.getIndex_arrive() < service.getStoppingTime().size()) {
+                                    if (!service.getStoppingTime().get(0).equals("-") && service.getStoppingTime().get(demande.getIndex_arrive() + 1).equals(Integer.toString(i))) {
                                         int id = service.getServiceID();
-                                        String s = service.getStoppingTime().get(0);
+                                        String s = service.getStoppingTime().get(demande.getIndex_arrive());
                                         System.out.println("---Service " + id + " arrive en " + s + " a 1/2 journee " + i);
-                                        service.getStoppingTime().remove(0);
-                                        service.getStoppingTime().remove(0);
-                                        service.getPathOfEachLeg().remove(0);
+                                        demande.setIndex_arrive();
                                     }
                                 }
 

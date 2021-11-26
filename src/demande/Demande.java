@@ -29,6 +29,9 @@ public class Demande {
     // Barges qui s'occupent de la demande
     private List<Barge> bargeAllouee;
 
+    private int index_depart = 0;
+    private int index_arrive = 0;
+
     public Demande(String demandeId, String origin, String destination, int departureTime, int arrivalTime, int volume) {
         this.demandeId = demandeId;
         this.origin = origin;
@@ -71,6 +74,22 @@ public class Demande {
         this.bargeAllouee .add(bargeAllouee);
     }
 
+    public int getIndex_depart() {
+        return index_depart;
+    }
+
+    public void setIndex_depart() {
+        this.index_depart+=2;
+    }
+
+    public int getIndex_arrive() {
+        return index_arrive;
+    }
+
+    public void setIndex_arrive() {
+        this.index_arrive+=2;
+    }
+
     @Override
     public String toString() {
         return "Demande{ " +
@@ -81,6 +100,8 @@ public class Demande {
                 ", \narrivalTime = " + arrivalTime +
                 ", \nvolume = " + volume +
                 ", \nbargesallouees = " + bargeAllouee +
+                ", \nindexDepart = " + index_depart +
+                ", \nindexArrive = " + index_arrive +
                 "}\n";
     }
 }
