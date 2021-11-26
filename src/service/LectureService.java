@@ -151,13 +151,16 @@ public class LectureService {
                     for (int i = 0; i < vesselTypes.length; i++) {
                         vesselTypesSplit = vesselTypes[i].split("-");
 
-                        if (vesselTypesSplit[1].equals("Small")) {
-                            bargeList.add(new Barge(10, vesselTypesSplit[1]));
-                        } else if (vesselTypesSplit[1].equals("Medium")) {
-                            bargeList.add(new Barge(15, vesselTypesSplit[1]));
-                        } else {
-                            bargeList.add(new Barge(25, vesselTypesSplit[1]));
+                        for (int k = 0 ; k < Integer.parseInt(vesselTypesSplit[0]); k++){
+                            if (vesselTypesSplit[1].equals("Small")) {
+                                bargeList.add(new Barge(10, vesselTypesSplit[1]));
+                            } else if (vesselTypesSplit[1].equals("Medium")) {
+                                bargeList.add(new Barge(15, vesselTypesSplit[1]));
+                            } else {
+                                bargeList.add(new Barge(25, vesselTypesSplit[1]));
+                            }
                         }
+
                     }
 
                     // Ajout d'un nouveau service dans la liste de services

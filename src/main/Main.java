@@ -25,6 +25,8 @@ public class Main {
         // Affectation des services lus à la liste
         serviceList = ls.getListService();
 
+        System.out.println(serviceList);
+
         // Correspond à 1/2 journée
         int i = 0;
         // Permet de délimiter une semaine (0 premiere 1/2 journee; 15 permet de revenir à 0
