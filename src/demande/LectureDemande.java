@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Cette class permet la lecture d'une ou des demandes
  *
- * @author Yann
+ * @author Yann Malaquin Billy Mortreux
  * @version 1.0
  * @name : LectureDemande
  * @created 15/11/2021 - 14:15

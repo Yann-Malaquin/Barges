@@ -5,7 +5,17 @@ import flotte.Barge;
 import java.util.ArrayList;
 import java.util.List;
 
-// Class représentant une demande avec les différents attributs utiles ( départ, capacité ...)
+
+/**
+ * Class représentant une demande avec les différents attributs utiles ( départ, capacité ...)
+ *
+ * @author Yann Malaquin Billy Mortreux
+ * @version 1.0
+ * @name : LectureDemande
+ * @created 15/11/2021 - 14:15
+ * @project Barges
+ * @copyright Yann
+ **/
 public class Demande {
 
     // L'id de la demande
@@ -29,7 +39,9 @@ public class Demande {
     // Barges qui s'occupent de la demande
     private List<Barge> bargeAllouee;
 
+    // L'index permettant de démarrer en suivant le chemin ( initialisé à 0 et incrémenté de 2 pour toujours rester sur la lettre)
     private int index_depart = 0;
+    // L'index permettant de s'arreter en suivant le chemin ( initialisé à 0 et incrémenté de 2 pour toujours rester sur la lettre)
     private int index_arrive = 0;
 
     public Demande(String demandeId, String origin, String destination, int departureTime, int arrivalTime, int volume) {
@@ -71,7 +83,7 @@ public class Demande {
     }
 
     public void setBargeAllouee(Barge bargeAllouee) {
-        this.bargeAllouee .add(bargeAllouee);
+        this.bargeAllouee.add(bargeAllouee);
     }
 
     public int getIndex_depart() {
@@ -79,7 +91,7 @@ public class Demande {
     }
 
     public void setIndex_depart() {
-        this.index_depart+=2;
+        this.index_depart += 2;
     }
 
     public int getIndex_arrive() {
@@ -87,7 +99,7 @@ public class Demande {
     }
 
     public void setIndex_arrive() {
-        this.index_arrive+=2;
+        this.index_arrive += 2;
     }
 
     @Override
