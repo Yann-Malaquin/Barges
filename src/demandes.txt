@@ -3,3 +3,6 @@ DemandID Origin Destination Departure-Time Arrival-Time Volume
 2P  D   B   11  1   15
 3R  A   C   2   13  20
 4R  D   B   0   12  18
+5F  A   D   0   8   9
+6F  A   D   0   8   9
+7P  D   B   9  1   15

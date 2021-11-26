@@ -10,7 +10,14 @@ import java.util.*;
 
 /**
  * Cette class permet la lecture d'un ou des services
- */
+ *
+ * @author Yann Malaquin Billy Mortreux
+ * @version 1.0
+ * @name : LectureDemande
+ * @created 15/11/2021 - 13:32
+ * @project Barges
+ * @copyright Yann
+ **/
 public class LectureService {
 
     // Stockage des services lus
@@ -144,12 +151,12 @@ public class LectureService {
                     for (int i = 0; i < vesselTypes.length; i++) {
                         vesselTypesSplit = vesselTypes[i].split("-");
 
-                        if (vesselTypesSplit[1].equals("Small")){
-                            bargeList.add(new Barge(10,vesselTypesSplit[1]));
+                        if (vesselTypesSplit[1].equals("Small")) {
+                            bargeList.add(new Barge(10, vesselTypesSplit[1]));
                         } else if (vesselTypesSplit[1].equals("Medium")) {
-                            bargeList.add(new Barge(15,vesselTypesSplit[1]));
+                            bargeList.add(new Barge(15, vesselTypesSplit[1]));
                         } else {
-                            bargeList.add(new Barge(25,vesselTypesSplit[1]));
+                            bargeList.add(new Barge(25, vesselTypesSplit[1]));
                         }
                     }
 

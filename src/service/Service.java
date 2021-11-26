@@ -5,7 +5,16 @@ import flotte.Barge;
 import java.util.ArrayList;
 import java.util.List;
 
-// Class représentant un service.
+/**
+ * Class représentant un service
+ *
+ * @author Yann Malaquin Billy Mortreux
+ * @version 1.0
+ * @name : LectureDemande
+ * @created 15/11/2021 - 13:32
+ * @project Barges
+ * @copyright Yann
+ **/
 public class Service {
 
     // Identifiant du service
@@ -54,7 +63,7 @@ public class Service {
     public Service(int serviceId, String origin, String destination, List<String> setOfLegs, List<String> pathOfEachLeg,
                    List<String> travelTime, int initialLoading, int finalUnloading, int departure, int arrival,
                    List<String> stoppingTime, List<String> departureTime, int capacity,
-                 List<Barge> bargeList) {
+                   List<Barge> bargeList) {
         this.serviceID = serviceId;
         this.origin = origin;
         this.destination = destination;

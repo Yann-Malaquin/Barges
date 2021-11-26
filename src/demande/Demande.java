@@ -1,6 +1,21 @@
 package demande;
 
-// Class représentant une demande avec les différents attributs utiles ( départ, capacité ...)
+import flotte.Barge;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+/**
+ * Class représentant une demande avec les différents attributs utiles ( départ, capacité ...)
+ *
+ * @author Yann Malaquin Billy Mortreux
+ * @version 1.0
+ * @name : LectureDemande
+ * @created 15/11/2021 - 14:15
+ * @project Barges
+ * @copyright Yann
+ **/
 public class Demande {
 
     // L'id de la demande
@@ -21,6 +36,14 @@ public class Demande {
     // Capacité de allouée à la demande
     private int volume;
 
+    // Barges qui s'occupent de la demande
+    private List<Barge> bargeAllouee;
+
+    // L'index permettant de démarrer en suivant le chemin ( initialisé à 0 et incrémenté de 2 pour toujours rester sur la lettre)
+    private int index_depart = 0;
+    // L'index permettant de s'arreter en suivant le chemin ( initialisé à 0 et incrémenté de 2 pour toujours rester sur la lettre)
+    private int index_arrive = 0;
+
     public Demande(String demandeId, String origin, String destination, int departureTime, int arrivalTime, int volume) {
         this.demandeId = demandeId;
         this.origin = origin;
@@ -28,6 +51,7 @@ public class Demande {
         this.departureTime = departureTime;
         this.arrivalTime = arrivalTime;
         this.volume = volume;
+        this.bargeAllouee = new ArrayList<>();
     }
 
     public String getDemandeId() {
@@ -54,6 +78,30 @@ public class Demande {
         return volume;
     }
 
+    public List<Barge> getBargeAllouee() {
+        return bargeAllouee;
+    }
+
+    public void setBargeAllouee(Barge bargeAllouee) {
+        this.bargeAllouee.add(bargeAllouee);
+    }
+
+    public int getIndex_depart() {
+        return index_depart;
+    }
+
+    public void setIndex_depart() {
+        this.index_depart += 2;
+    }
+
+    public int getIndex_arrive() {
+        return index_arrive;
+    }
+
+    public void setIndex_arrive() {
+        this.index_arrive += 2;
+    }
+
     @Override
     public String toString() {
         return "Demande{ " +
@@ -63,6 +111,9 @@ public class Demande {
                 ", \ndepartureTime = " + departureTime +
                 ", \narrivalTime = " + arrivalTime +
                 ", \nvolume = " + volume +
+                ", \nbargesallouees = " + bargeAllouee +
+                ", \nindexDepart = " + index_depart +
+                ", \nindexArrive = " + index_arrive +
                 "}\n";
     }
 }
